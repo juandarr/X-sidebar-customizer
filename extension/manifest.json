@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "X Pinned Lists Sidebar",
+  "version": "1.8.3",
+  "description": "Pinned lists across X views with custom emoji, saved order, and list membership shortcuts on user cards and profiles.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_title": "X Pinned Lists Sidebar",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://www.x.com/*",
+        "https://twitter.com/*",
+        "https://www.twitter.com/*"
+      ],
+      "js": [
+        "list-api.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://www.x.com/*",
+        "https://twitter.com/*",
+        "https://www.twitter.com/*"
+      ],
+      "js": [
+        "preferences.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://www.x.com/*",
+        "https://twitter.com/*",
+        "https://www.twitter.com/*"
+      ],
+      "js": [
+        "content.js",
+        "manage-lists.js",
+        "timeline.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

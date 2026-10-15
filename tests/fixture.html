@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>X sidebar layout fixture</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #000; color: #e7e9ea; font: 15px Arial, sans-serif; }
+    #app { display: flex; width: 890px; margin: auto; }
+    header { flex: 0 0 290px; padding: 12px 24px; }
+    .header-inner { position: sticky; top: 12px; }
+    .logo { color: #1d9bf0; padding: 6px 12px 16px; font-weight: bold; font-size: 24px; }
+    nav { display: flex; flex-direction: column; }
+    header nav a, header nav button { display: flex; align-items: center; gap: 20px; color: inherit; padding: 18px 12px; text-decoration: none; background: none; border: 0; font: inherit; }
+    header nav svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .compose { margin: 16px 0; }
+    .compose a { display: flex; justify-content: center; align-items: center; width: 232px; height: 52px; border-radius: 40px; background: #1d9bf0; color: white; font-weight: bold; text-decoration: none; }
+    .account { margin-top: 32px; padding: 18px 12px; }
+    main { width: 600px; border: 1px solid #2f3336; border-top: none; }
+    main nav { display: block; border-bottom: 1px solid #2f3336; }
+    [role="tablist"] { display: flex; overflow-x: auto; }
+    [role="tablist"] > div { flex: 0 0 auto; }
+    [role="tab"] { display: block; color: #71767b; padding: 22px 18px; text-decoration: none; position: relative; }
+    [role="tab"][aria-selected="true"] { color: #e7e9ea; font-weight: bold; }
+    [role="tab"][aria-selected="true"]:after { content: ''; position: absolute; bottom: 0; left: 15px; right: 15px; height: 4px; border-radius: 10px; background: #1d9bf0; }
+    .tweet-box { padding: 24px; height: 130px; border-bottom: 1px solid #2f3336; color: #71767b; }
+    .tweet-box strong { color: #1d9bf0; display: block; margin: 25px 0 0; }
+    .notice { padding: 18px; text-align: center; color: #1d9bf0; border-bottom: 1px solid #2f3336; }
+    article { padding: 25px; border-bottom: 1px solid #2f3336; line-height: 1.55; }
+    article h2 { margin: 0 0 6px; font-size: 16px; }
+    article p { margin: 0 0 20px; }
+    article small { color: #71767b; }
+    .card { min-height: 200px; border: 1px solid #2f3336; border-radius: 16px; padding: 32px; background: #101820; }
+    .card h3 { font-size: 25px; margin: 0 0 18px; }
+    @media(max-width:700px) { #app { width: 660px; } header { flex-basis: 80px; padding: 12px; } header nav span { display:none; } .compose a { width:48px; } .compose a span { display:none; } }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header role="banner">
+      <div class="header-inner">
+        <div class="logo">𝕏</div>
+        <nav aria-label="Primary">
+          <a href="/home"><svg viewBox="0 0 24 24"><path d="M3 10 12 3 21 10v11h-6v-7H9v7H3z"/></svg><span>Home</span></a>
+          <a href="/notifications"><svg viewBox="0 0 24 24"><path d="M5 17h14l-2-4V8a5 5 0 0 0-10 0v5zM10 21h4"/></svg><span>Notifications</span></a>
+          <a href="/messages"><svg viewBox="0 0 24 24"><path d="M3 3h18v15H9l-6 3z"/></svg><span>Chat</span></a>
+          <a href="/i/history"><svg viewBox="0 0 24 24"><path d="M5 3h14v19l-7-5-7 5z"/></svg><span>History</span></a>
+          <a href="/fixtureuser" data-testid="AppTabBar_Profile_Link"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3z"/></svg><span>Profile</span></a>
+          <button type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h.01M12 12h.01M17 12h.01"/></svg><span>More</span></button>
+        </nav>
+        <div class="compose"><a data-testid="SideNav_NewTweet_Button" href="/compose/tweet"><span>Tweet</span></a></div>
+        <div class="account" data-testid="SideNav_AccountSwitcher_Button">@fixtureuser</div>
+      </div>
+    </header>
+    <main role="main" data-testid="primaryColumn">
+      <nav><div role="tablist" aria-label="Home timeline">
+        <div><a role="tab" href="/home" aria-selected="true"><span>For you</span></a></div>
+        <div><a role="tab" href="/home" aria-selected="false"><span>Following</span></a></div>
+        <div><a role="tab" href="/home" aria-selected="false"><span>AI experimentation</span></a></div>
+        <div><a role="tab" href="/home" aria-selected="false"><span>Artificial intelligence</span></a></div>
+        <div><a role="tab" href="/home" aria-selected="false"><span>Computer science</span></a></div>
+      </div></nav>
+      <div class="tweet-box">What’s happening?<strong>▧　GIF　☷　☺　◷</strong></div>
+      <div class="notice" id="selection">For you</div>
+      <article><h2>Your timeline <small>· layout preview</small></h2><p>This is an illustrative test page. Your real timeline stays in place.</p><div class="card"><h3>Your lists.<br>Your space.</h3><p>Open pinned lists from the left sidebar.</p><small>For you and Following remain at the top.</small></div></article>
+      <article><h2>A familiar layout</h2><p>The Tweet button sits directly under the lists. Compact rows show every pinned list. Drag them into your preferred order.</p><small>♡　↻　▢　↗</small></article>
+    </main>
+  </div>
+  <script>
+    document.addEventListener('click', event => {
+      const tab = event.target.closest('[role="tab"]');
+      if (tab) {
+        event.preventDefault();
+        document.querySelectorAll('[role="tab"]').forEach(item => item.setAttribute('aria-selected', String(item === tab)));
+        document.getElementById('selection').textContent = tab.textContent;
+      }
+      const compose = event.target.closest('[data-testid="SideNav_NewTweet_Button"]');
+      if (compose) { event.preventDefault(); document.getElementById('selection').textContent = 'Compose opened'; }
+    });
+  </script>
+</body>
+</html>

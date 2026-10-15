@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X Pinned Lists Sidebar</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Pinned lists, on the left.</h1>
+  <p>Lists sit above your Tweet/Post button. On Home, For you and Following stay at the top.</p>
+  <label><input id="enabled" type="checkbox" disabled> Enable extension features</label>
+  <p id="status" role="status" aria-live="polite">Loading settings…</p>
+  <small>Works wherever the full desktop sidebar is visible. Visit Home once to learn your pins. Click a list icon to choose an emoji; drag a row to reorder it. Use Add/remove from list below Follow/Following to edit memberships without leaving your current view.</small>
+  <p class="hint">Using Control Panel for Twitter? Keep its “Hide the Compose Tweet button” setting off.</p>
+  <script src="popup.js"></script>
+</body>
+</html>

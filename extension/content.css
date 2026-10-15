@@ -1,0 +1,364 @@
+/* Namespaced selectors avoid changing Control Panel for Twitter's styles. */
+[data-xpls-hidden="true"] { display: none !important; }
+#xpls-sidebar {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: var(--xpls-width, 230px);
+  max-width: 100%;
+  margin: 8px 0 4px;
+  color: var(--xpls-text, inherit);
+  font: 15px/1.35 Arial, sans-serif;
+}
+#xpls-sidebar .xpls-heading {
+  margin: 0;
+  padding: 4px var(--xpls-inset, 12px) 6px;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: .6;
+}
+#xpls-sidebar .xpls-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  /* Every pin stays visible; no nested scrolling or expanding panel. */
+  max-height: none;
+  overflow: visible;
+}
+#xpls-sidebar .xpls-item {
+  display: flex;
+  align-items: center;
+  gap: var(--xpls-gap, 20px);
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--xpls-row-height, 36px);
+  flex: 0 0 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0 12px 0 var(--xpls-inset, 12px);
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+#xpls-sidebar .xpls-item:hover {
+  background: color-mix(in srgb, currentColor 9%, transparent);
+}
+#xpls-sidebar .xpls-item:focus-visible {
+  outline: 2px solid var(--xpls-accent, #1d9bf0);
+  outline-offset: -2px;
+}
+#xpls-sidebar .xpls-item[aria-current="page"] {
+  font-weight: 700;
+}
+#xpls-sidebar .xpls-item[aria-current="page"]:not([data-drop])::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--xpls-inset, 12px) 12px;
+  bottom: 0;
+  height: 1px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xpls-accent, #1d9bf0) 80%, transparent);
+  pointer-events: none;
+}
+[data-xpls-next-arrow] { display: none !important; }
+[data-xpls-tab-label] { text-decoration: none !important; }
+[data-xpls-following-tab] { position: relative !important; }
+[data-xpls-inline-sort] {
+  position: absolute !important;
+  left: var(--xpls-sort-left) !important;
+  top: var(--xpls-sort-top) !important;
+  width: 24px !important;
+  height: 24px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#xpls-timeline-label {
+  padding: 7px 16px;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  font: 400 12px/1.4 Arial, sans-serif;
+  opacity: .75;
+}
+#xpls-sidebar svg {
+  width: var(--xpls-icon, 25px);
+  height: var(--xpls-row-icon, 24px);
+  flex: 0 0 var(--xpls-icon, 25px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#xpls-sidebar .xpls-label {
+  min-width: 0;
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#xpls-sidebar .xpls-dragging { opacity: .35; }
+#xpls-sidebar .xpls-item[data-drop]::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--xpls-inset, 12px) 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--xpls-accent, #1d9bf0);
+  pointer-events: none;
+}
+#xpls-sidebar .xpls-item[data-drop="before"]::after { top: -1px; }
+#xpls-sidebar .xpls-item[data-drop="after"]::after { bottom: -1px; }
+#xpls-sidebar .xpls-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+#xpls-sidebar .xpls-row {
+  position: relative;
+  flex: 0 0 auto;
+}
+#xpls-sidebar .xpls-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--xpls-icon, 25px);
+  flex: 0 0 var(--xpls-icon, 25px);
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: var(--xpls-row-icon, 24px);
+  line-height: 1;
+}
+#xpls-sidebar .xpls-emoji-edit {
+  position: absolute;
+  inset-inline-start: var(--xpls-inset, 12px);
+  top: 0;
+  width: var(--xpls-icon, 25px);
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+#xpls-sidebar .xpls-emoji-edit:hover {
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+#xpls-sidebar .xpls-emoji-edit:focus-visible {
+  outline: 2px solid var(--xpls-accent, #1d9bf0);
+  outline-offset: -1px;
+}
+#xpls-emoji-picker {
+  position: fixed;
+  z-index: 2147483647;
+  box-sizing: border-box;
+  width: min(320px, calc(100vw - 16px));
+  max-height: calc(100vh - 16px);
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-radius: 16px;
+  box-shadow: 0 6px 30px #0006;
+  font: 14px/1.4 Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#xpls-emoji-picker button {
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+#xpls-emoji-picker button:hover,
+#xpls-emoji-picker button[aria-pressed="true"] {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+#xpls-emoji-picker button:focus-visible,
+#xpls-emoji-picker input:focus-visible {
+  outline: 2px solid var(--cpft-theme, #1d9bf0);
+  outline-offset: -2px;
+}
+#xpls-emoji-picker .xpls-picker-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#xpls-emoji-picker .xpls-picker-header strong {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#xpls-emoji-picker .xpls-picker-header button {
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+}
+#xpls-emoji-picker input {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-radius: 8px;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+}
+#xpls-emoji-picker .xpls-emoji-choices {
+  min-height: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+#xpls-emoji-picker h3 {
+  margin: 8px 0 4px;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+}
+#xpls-emoji-picker .xpls-emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+}
+#xpls-emoji-picker .xpls-emoji-option {
+  height: 38px;
+  padding: 0;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 24px;
+}
+#xpls-emoji-picker .xpls-reset-icon {
+  flex: 0 0 auto;
+  padding: 8px;
+  text-align: center;
+}
+[data-xpls-manage-anchor="true"] { position: relative; }
+span[data-xpls-manage] {
+  position: absolute;
+  display: block;
+  width: max-content;
+  z-index: 1;
+  line-height: 14px;
+}
+span[data-xpls-manage] button.xpls-manage-link {
+  display: inline;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: 400 11px/14px Arial, sans-serif;
+  white-space: nowrap;
+  text-decoration: none;
+  opacity: .7;
+  cursor: pointer;
+}
+span[data-xpls-manage] button.xpls-manage-link:hover {
+  color: var(--cpft-theme, #1d9bf0) !important;
+  opacity: 1;
+  text-decoration: underline;
+}
+span[data-xpls-manage] button.xpls-manage-link:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--cpft-theme, #1d9bf0);
+  outline-offset: 3px;
+}
+#xpls-list-picker {
+  position: fixed;
+  transform: none;
+  margin: 0;
+  z-index: 2147483647;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: min(320px, calc(100vw - 16px));
+  max-height: calc(100vh - 16px);
+  padding: 12px;
+  gap: 10px;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: 14px;
+  box-shadow: 0 6px 30px #0006;
+  font: 14px/1.4 Arial, sans-serif;
+}
+#xpls-list-picker [hidden] { display: none !important; }
+#xpls-list-picker .xpls-list-picker-header { display: flex; flex: 0 0 auto; gap: 12px; align-items: center; }
+#xpls-list-picker strong { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#xpls-list-picker button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+#xpls-list-picker .xpls-list-picker-header button { display: flex; align-items: center; justify-content: center; flex: 0 0 32px; width: 32px; height: 32px; box-sizing: border-box; padding: 7px; margin: 0; border-radius: 999px; }
+#xpls-list-picker .xpls-list-picker-header svg { flex: 0 0 18px; }
+#xpls-list-picker input[type="search"] {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-radius: 8px;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+}
+#xpls-list-picker .xpls-list-choices { min-height: 0; max-height: 260px; overflow-y: auto; overscroll-behavior: contain; }
+#xpls-list-picker .xpls-list-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#xpls-list-picker .xpls-list-choice:hover, #xpls-list-picker button:hover { background: color-mix(in srgb, currentColor 8%, transparent); }
+#xpls-list-picker input[type="checkbox"] { width: 16px; height: 16px; flex: 0 0 16px; margin: 0; accent-color: var(--cpft-theme, #1d9bf0); }
+#xpls-list-picker .xpls-list-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+#xpls-list-picker .xpls-private-label { opacity: .6; font-size: 11px; }
+#xpls-list-picker p { margin: 0; }
+#xpls-list-picker .xpls-list-picker-message { font-size: 12px; opacity: .75; }
+#xpls-list-picker .xpls-list-picker-footer { display: flex; flex: 0 0 auto; gap: 8px; justify-content: flex-end; }
+#xpls-list-picker .xpls-list-picker-footer button { padding: 6px 14px; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: 9999px; }
+#xpls-list-picker button:disabled { cursor: default; opacity: .45; }
+#xpls-list-picker :focus-visible { outline: 2px solid var(--cpft-theme, #1d9bf0); outline-offset: 1px; }
+
+/* Compact controls live with the account footer, outside the main navigation. */
+[data-xpls-minimal-hidden="true"], [data-xpls-right-hidden="true"] { display: none !important; }
+#xpls-preferences { position: relative; z-index: 1; isolation: isolate; box-sizing: border-box; width: 100%; max-width: 260px; margin: auto 0 4px; padding: 12px; border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent); }
+#xpls-preferences .xpls-pref-label { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 500; opacity: .65; }
+#xpls-preferences .xpls-pref-select { position: relative; }
+#xpls-preferences select { appearance: none; width: 100%; min-width: 0; min-height: 36px; padding: 7px 30px 7px 10px; border: 1px solid color-mix(in srgb, currentColor 22%, transparent); border-radius: 8px; background: transparent; color: inherit; font: inherit; cursor: pointer; text-overflow: ellipsis; }
+#xpls-preferences select option { background: Canvas; color: CanvasText; }
+#xpls-preferences .xpls-pref-select svg { position: absolute; right: 10px; top: 12px; width: 12px; height: 12px; pointer-events: none; opacity: .65; }
+#xpls-preferences .xpls-pref-switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; min-height: 28px; cursor: pointer; }
+#xpls-preferences input { color: inherit; appearance: none; flex: 0 0 30px; width: 30px; height: 18px; margin: 0; border: 1px solid color-mix(in srgb, currentColor 25%, transparent); border-radius: 999px; background: color-mix(in srgb, currentColor 15%, transparent); position: relative; cursor: pointer; }
+#xpls-preferences input::after { content: ""; position: absolute; width: 12px; height: 12px; left: 2px; top: 2px; border-radius: 50%; background: currentColor; }
+#xpls-preferences input:checked { background: var(--cpft-theme, #1d9bf0); border-color: var(--cpft-theme, #1d9bf0); }
+#xpls-preferences input:checked::after { left: 14px; background: white; }
+#xpls-preferences :focus-visible { outline: 2px solid var(--cpft-theme, #1d9bf0); outline-offset: 3px; }
+#xpls-preferences p { font: inherit; font-size: 12px; opacity: .7; margin: 8px 0 0; }
